@@ -920,7 +920,7 @@ Developed skills in client advisory, profile management, and data flow handling,
   - #PROJECT DETAILS (1st link when click on project)
 -->
 
-<article class="project-details" data-page="smartin-brussels">
+<article class="project-details" data-project-page="smartin-brussels">
 
   <header class="project-header">
 
@@ -940,32 +940,13 @@ Developed skills in client advisory, profile management, and data flow handling,
 <div class="project-layout">
 
   <div class="project-left">
+
     <div class="ig-wrapper">
       <blockquote class="instagram-media"
         data-instgrm-permalink="https://www.instagram.com/reel/DVf7DwSguYC/"
         data-instgrm-version="14">
       </blockquote>
     </div>
-  </div>
-
-  <div class="project-right">
-
-<p class="service-item-text">
-  Smart-In is our territorial analysis platform through which we provide fast, independent, and tailored studies to help secure decisions before any investment is made.
-</p><br>
-
-<p class="service-item-text">
-  Concretely, we support entrepreneurs in selecting the most suitable location to maximize their chances of success, and help existing businesses better understand their environment in order to optimize their marketing, refine customer targeting, and position themselves effectively against competition and market trends.
-</p><br>
-
-
-<p class="service-item-text">
-  Our current coverage focuses on the Brussels-Capital Region, with planned expansion toward major European cities and metropolitan areas, including Paris and Nice as upcoming next markets.
-</p><br>
-
-<p class="service-item-text">
-  <strong>Required skills:</strong> Python, HTML, CSS, JavaScript, QGIS, Data Analysis, Data Visualization, Business Intelligence.
-</p>
 
 <div class="project-links">
 
@@ -991,6 +972,29 @@ Developed skills in client advisory, profile management, and data flow handling,
 
 </div>
 
+  </div>
+
+  <div class="project-right">
+
+<p class="service-item-text">
+  Smart-In is our territorial analysis platform through which we provide fast, independent, and tailored studies to help secure decisions before any investment is made.
+</p><br>
+
+<p class="service-item-text">
+  Concretely, we support entrepreneurs in selecting the most suitable location to maximize their chances of success, and help existing businesses better understand their environment in order to optimize their marketing, refine customer targeting, and position themselves effectively against competition and market trends.
+</p><br>
+
+
+<p class="service-item-text">
+  Our current coverage focuses on the Brussels-Capital Region, with planned expansion toward major European cities and metropolitan areas, including Paris and Nice as upcoming next markets.
+</p><br>
+
+<p class="service-item-text">
+  <strong>Required skills:</strong> Python, HTML, CSS, JavaScript, QGIS, Data Analysis, Data Visualization, Business Intelligence.
+</p>
+
+
+
 </div>
 
 </div>
@@ -1002,7 +1006,7 @@ Developed skills in client advisory, profile management, and data flow handling,
 
 
 
-<article class="project-details" data-page="smartin-dubai">
+<article class="project-details" data-project-page="smartin-dubai">
 
   <header class="project-header">
 
@@ -1096,7 +1100,7 @@ Developed skills in client advisory, profile management, and data flow handling,
 
 
 
-<article class="project-details" data-page="auto_perfs">
+<article class="project-details" data-project-page="auto_perfs">
 
   <header class="project-header">
 
@@ -1168,7 +1172,7 @@ Developed skills in client advisory, profile management, and data flow handling,
 
 
 
-<article class="project-details" data-page="revolut_customer_engagement">
+<article class="project-details" data-project-page="revolut_customer_engagement">
 
   <header class="project-header">
 
@@ -1265,7 +1269,7 @@ Developed skills in client advisory, profile management, and data flow handling,
 
 
 
-<article class="project-details" data-page="zus_coffee">
+<article class="project-details" data-project-page="zus_coffee">
 
   <header class="project-header">
 
@@ -1373,7 +1377,7 @@ This tool provides a continuous monitoring system to follow business performance
 
 
 
-<article class="project-details" data-page="uk_road_safety">
+<article class="project-details" data-project-page="uk_road_safety">
 
   <header class="project-header">
 
@@ -1532,8 +1536,7 @@ projectButtons.forEach(button => {
       page.classList.remove("active");
     });
 
-    const target = document.querySelector(`[data-page="${project}"]`);
-
+const target = document.querySelector(`[data-project-page="${project}"]`);
     if (target) {
       target.classList.add("active");
     }

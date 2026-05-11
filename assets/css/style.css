@@ -206,7 +206,7 @@ article {
 
 article { display: none; }
 
-article.active {
+article[data-page].active {
   display: block;
   animation: fade 0.5s ease backwards;
 }
@@ -838,6 +838,26 @@ main {
 }
 
 
+
+
+@media (max-width: 480px) {
+
+  .project-links {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+.project-links .form-btn {
+  width: auto !important;
+  flex: 0 0 auto;
+}
+}
+
+
+
+
 /**
  * skills 
  */
@@ -874,6 +894,45 @@ main {
   height: 100%;
   border-radius: inherit;
 }
+
+
+.resume-download {
+  margin-bottom: 50px;
+}
+
+
+
+
+
+
+/* ==========================================
+   LINK COLOR FIX
+========================================== */
+
+.certificate-link,
+.certificate-link:visited,
+.project-links a,
+.project-links a:visited,
+.project-links .form-btn {
+  color: var(--vegas-gold) !important;
+}
+
+
+/* timeline dates */
+.timeline-item span {
+  color: var(--vegas-gold) !important;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -951,7 +1010,7 @@ main {
 .project-links {
   display: flex;
   gap: 12px;
-  flex-wrap: wrap; /* permet de passer à la ligne si écran petit */
+  flex-wrap: wrap;
   margin-top: 20px;
 }
 
@@ -1037,9 +1096,7 @@ main {
 
 
 
-.project-details {
-  display: none;
-}
+
 
 .project-header {
   display: flex;
@@ -1175,9 +1232,20 @@ main {
 
 @media (max-width: 480px) {
   .project-links {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 10px;
   }
+
+  .project-links .form-btn {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+.project-links .form-btn {
+  display: inline-flex;
+  width: auto !important;
 }
 
 

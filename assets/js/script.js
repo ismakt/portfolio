@@ -196,7 +196,7 @@ projectButtons.forEach(btn => {
     // open project
     projectPages.forEach(p => p.classList.remove("active"));
 
-    const target = document.querySelector(`[data-page="${project}"]`);
+    const target = document.querySelector(`[data-project-page="${project}"]`);
 
     if (target) {
       target.classList.add("active");
@@ -213,7 +213,9 @@ document.querySelectorAll(".back-btn").forEach(btn => {
 
   btn.addEventListener("click", () => {
 
-    projectPages.forEach(p => p.classList.remove("active"));
+    projectPages.forEach(p => {
+      p.classList.remove("active");
+    });
 
     portfolioPage.classList.add("active");
 
@@ -246,31 +248,7 @@ document.querySelectorAll("[data-nav-link]").forEach((link, index) => {
 });
 
 
-// ==========================================
-// BACK BUTTON
-// ==========================================
 
-const backButtons = document.querySelectorAll(".back-btn");
-
-backButtons.forEach(button => {
-
-  button.addEventListener("click", () => {
-
-    // cacher projets
-    projectPages.forEach(page => {
-      page.style.display = "none";
-      page.classList.remove("active");
-    });
-
-    // réafficher portfolio
-    portfolioPage.style.display = "block";
-    portfolioPage.classList.add("active");
-
-    window.scrollTo(0, 0);
-
-  });
-
-});
 
 
 
