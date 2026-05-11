@@ -2,38 +2,47 @@
 
 
 
-// element toggle function
-const elementToggleFunc = function (elem) { elem.classList.toggle("active"); }
+// ==========================================
+// ELEMENT TOGGLE
+// ==========================================
+
+const elementToggleFunc = function (elem) {
+  elem.classList.toggle("active");
+};
 
 
 
-// sidebar variables
+// ==========================================
+// SIDEBAR
+// ==========================================
+
 const sidebar = document.querySelector("[data-sidebar]");
 const sidebarBtn = document.querySelector("[data-sidebar-btn]");
 
-// sidebar toggle functionality for mobile
-sidebarBtn.addEventListener("click", function () { elementToggleFunc(sidebar); });
+sidebarBtn.addEventListener("click", function () {
+  elementToggleFunc(sidebar);
+});
 
 
 
-// testimonials variables
+// ==========================================
+// TESTIMONIALS MODAL
+// ==========================================
+
 const testimonialsItem = document.querySelectorAll("[data-testimonials-item]");
 const modalContainer = document.querySelector("[data-modal-container]");
 const modalCloseBtn = document.querySelector("[data-modal-close-btn]");
 const overlay = document.querySelector("[data-overlay]");
 
-// modal variable
 const modalImg = document.querySelector("[data-modal-img]");
 const modalTitle = document.querySelector("[data-modal-title]");
 const modalText = document.querySelector("[data-modal-text]");
 
-// modal toggle function
 const testimonialsModalFunc = function () {
   modalContainer.classList.toggle("active");
   overlay.classList.toggle("active");
-}
+};
 
-// add click event to all modal items
 for (let i = 0; i < testimonialsItem.length; i++) {
 
   testimonialsItem[i].addEventListener("click", function () {
@@ -49,33 +58,24 @@ for (let i = 0; i < testimonialsItem.length; i++) {
 
 }
 
-// add click event to modal close button
 modalCloseBtn.addEventListener("click", testimonialsModalFunc);
 overlay.addEventListener("click", testimonialsModalFunc);
 
 
 
-// custom select variables
+// ==========================================
+// CUSTOM FILTER SELECT
+// ==========================================
+
 const select = document.querySelector("[data-select]");
 const selectItems = document.querySelectorAll("[data-select-item]");
 const selectValue = document.querySelector("[data-selecct-value]");
 const filterBtn = document.querySelectorAll("[data-filter-btn]");
 
-select.addEventListener("click", function () { elementToggleFunc(this); });
+select.addEventListener("click", function () {
+  elementToggleFunc(this);
+});
 
-// add event in all select items
-for (let i = 0; i < selectItems.length; i++) {
-  selectItems[i].addEventListener("click", function () {
-
-    let selectedValue = this.innerText.toLowerCase();
-    selectValue.innerText = this.innerText;
-    elementToggleFunc(select);
-    filterFunc(selectedValue);
-
-  });
-}
-
-// filter variables
 const filterItems = document.querySelectorAll("[data-filter-item]");
 
 const filterFunc = function (selectedValue) {
@@ -83,18 +83,39 @@ const filterFunc = function (selectedValue) {
   for (let i = 0; i < filterItems.length; i++) {
 
     if (selectedValue === "all") {
+
       filterItems[i].classList.add("active");
+
     } else if (selectedValue === filterItems[i].dataset.category) {
+
       filterItems[i].classList.add("active");
+
     } else {
+
       filterItems[i].classList.remove("active");
+
     }
 
   }
 
+};
+
+for (let i = 0; i < selectItems.length; i++) {
+
+  selectItems[i].addEventListener("click", function () {
+
+    let selectedValue = this.innerText.toLowerCase();
+
+    selectValue.innerText = this.innerText;
+
+    elementToggleFunc(select);
+
+    filterFunc(selectedValue);
+
+  });
+
 }
 
-// add event in all filter button items for large screen
 let lastClickedBtn = filterBtn[0];
 
 for (let i = 0; i < filterBtn.length; i++) {
@@ -102,11 +123,15 @@ for (let i = 0; i < filterBtn.length; i++) {
   filterBtn[i].addEventListener("click", function () {
 
     let selectedValue = this.innerText.toLowerCase();
+
     selectValue.innerText = this.innerText;
+
     filterFunc(selectedValue);
 
     lastClickedBtn.classList.remove("active");
+
     this.classList.add("active");
+
     lastClickedBtn = this;
 
   });
@@ -115,45 +140,166 @@ for (let i = 0; i < filterBtn.length; i++) {
 
 
 
-// contact form variables
+// ==========================================
+// CONTACT FORM
+// ==========================================
+
 const form = document.querySelector("[data-form]");
 const formInputs = document.querySelectorAll("[data-form-input]");
 const formBtn = document.querySelector("[data-form-btn]");
 
-// add event to all form input field
 for (let i = 0; i < formInputs.length; i++) {
+
   formInputs[i].addEventListener("input", function () {
 
-    // check form validation
     if (form.checkValidity()) {
+
       formBtn.removeAttribute("disabled");
+
     } else {
+
       formBtn.setAttribute("disabled", "");
+
     }
 
   });
+
 }
 
 
 
-// page navigation variables
+// ==========================================
+// PAGE NAVIGATION
+// ==========================================
+
+const projectButtons = document.querySelectorAll(".open-project");
+const projectPages = document.querySelectorAll(".project-details");
+const portfolioPage = document.querySelector(".portfolio");
 const navigationLinks = document.querySelectorAll("[data-nav-link]");
 const pages = document.querySelectorAll("[data-page]");
 
-// add event to all nav link
-for (let i = 0; i < navigationLinks.length; i++) {
-  navigationLinks[i].addEventListener("click", function () {
+// OPEN PROJECT
+projectButtons.forEach(btn => {
 
-    for (let i = 0; i < pages.length; i++) {
-      if (this.innerHTML.toLowerCase() === pages[i].dataset.page) {
-        pages[i].classList.add("active");
-        navigationLinks[i].classList.add("active");
-        window.scrollTo(0, 0);
-      } else {
-        pages[i].classList.remove("active");
-        navigationLinks[i].classList.remove("active");
-      }
+  btn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    const project = this.dataset.project;
+
+    // reset pages
+    pages.forEach(p => p.classList.remove("active"));
+    navigationLinks.forEach(n => n.classList.remove("active"));
+
+    // hide portfolio system
+    portfolioPage.classList.remove("active");
+
+    // open project
+    projectPages.forEach(p => p.classList.remove("active"));
+
+    const target = document.querySelector(`[data-page="${project}"]`);
+
+    if (target) {
+      target.classList.add("active");
     }
 
+    window.scrollTo(0, 0);
   });
+
+});
+
+
+// BACK BUTTON
+document.querySelectorAll(".back-btn").forEach(btn => {
+
+  btn.addEventListener("click", () => {
+
+    projectPages.forEach(p => p.classList.remove("active"));
+
+    portfolioPage.classList.add("active");
+
+    window.scrollTo(0, 0);
+
+  });
+
+});
+
+
+// NAVIGATION (About / Resume / Portfolio)
+document.querySelectorAll("[data-nav-link]").forEach((link, index) => {
+
+  link.addEventListener("click", function () {
+
+    // close projects ALWAYS
+    projectPages.forEach(p => p.classList.remove("active"));
+
+    // activate correct page
+    pages.forEach(p => p.classList.remove("active"));
+    navigationLinks.forEach(n => n.classList.remove("active"));
+
+    pages[index].classList.add("active");
+    this.classList.add("active");
+
+    window.scrollTo(0, 0);
+
+  });
+
+});
+
+
+// ==========================================
+// BACK BUTTON
+// ==========================================
+
+const backButtons = document.querySelectorAll(".back-btn");
+
+backButtons.forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    // cacher projets
+    projectPages.forEach(page => {
+      page.style.display = "none";
+      page.classList.remove("active");
+    });
+
+    // réafficher portfolio
+    portfolioPage.style.display = "block";
+    portfolioPage.classList.add("active");
+
+    window.scrollTo(0, 0);
+
+  });
+
+});
+
+
+
+// ==========================================
+// VIDEO MODAL
+// ==========================================
+
+const openVideoModalButtons = document.querySelectorAll(".open-video");
+
+const closeVideoModal = document.getElementById("closeVideoModal");
+
+const videoModal = document.getElementById("videoModal");
+
+if (videoModal && closeVideoModal) {
+
+  openVideoModalButtons.forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+      videoModal.classList.add("active");
+
+    });
+
+  });
+
+  closeVideoModal.addEventListener("click", () => {
+
+    videoModal.classList.remove("active");
+
+  });
+
 }
